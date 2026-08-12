@@ -1,3 +1,12 @@
 #root {
   color: #333;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
 }
+
+#root h1,
+#root > p {
+  grid-column: 1 / -1;
+}
+

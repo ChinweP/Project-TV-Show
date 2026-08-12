@@ -42,10 +42,11 @@ function makePageForEpisodes(episodeList) {
     episodeLink.href = episode.url;
     episodeLink.textContent = "View on TVMaze";
     episodeContainer.appendChild(episodeTitle);
+    episodeContainer.appendChild(episodeDetails);
     episodeContainer.appendChild(episodeImage);
     episodeContainer.appendChild(episodeSummary);
     episodeContainer.appendChild(episodeLink);
-    episodeContainer.appendChild(episodeDetails);
+    
 
     rootElem.appendChild(episodeContainer);
   });
