@@ -46,7 +46,7 @@ searchInput.addEventListener("input", () =>{
     searchTerm = searchInput.value.toLowerCase()
     const allEpisodes = getEpisodes()
     const filteredEpisodes =  allEpisodes.filter((episode) => episode.name.toLowerCase().includes(searchTerm) || episode.summary.toLowerCase().includes(searchTerm))
-    searchCount.textContent = `${filteredEpisodes.length}`
+    searchCount.textContent = `Displaying: ${filteredEpisodes.length}/${allEpisodes.length}`
     render(filteredEpisodes);
 })
 
