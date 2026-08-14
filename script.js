@@ -2,6 +2,17 @@
 const episodesContainer = document.getElementById("episodes-container")
 const searchInput = document.getElementById("episode-search");
 const searchCount = document.getElementById("searchCount")
+const selectEpisodes = document.getElementById("episode-selector")
+
+function populateOption(episodeList){
+    episodeList.forEach((episode) => {
+       const episodeOption =  document.createElement("option")
+        episodeOption.textContent = `S${String(episode.season).padStart(2, "0")}E${String(episode.number).padStart(2, "0")} - ${episode.name}`;
+        episodeOption.value = episode.id
+       selectEpisodes.appendChild(episodeOption)
+    })
+}
+
 function getEpisodes(){
     return getAllEpisodes()
 }
@@ -39,6 +50,7 @@ function render(episodeList) {
 function setup() {
     const allEpisodes = getEpisodes()
     render(allEpisodes);
+    populateOption(allEpisodes)
 }
 
 let searchTerm = ""
@@ -54,7 +66,16 @@ searchInput.addEventListener("input", () =>{
     render(filteredEpisodes);
 })
 
-
-
+let selectedEpisode = ""
+selectEpisodes.addEventListener("change", () => {
+selectedEpisode = selectEpisodes.value
+    const allEpisodes = getEpisodes()
+    const episode = allEpisodes.find((episode) => {
+      return episode.id === Number(selectedEpisode)
+    })
+    if(episode){
+        render([episode])
+    }
+})
 
 window.onload = setup;
