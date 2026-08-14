@@ -13,8 +13,27 @@
   </head>
 
   <body>
-    <main id="root">
-    </main>
+  <main id="root">
+    <div id="search-container">
+      <label for="episode-search">Search an episode:</label>
+      <input
+              type="search"
+              id="episode-search"
+              name="episode"
+              placeholder="enter episode"
+      />
+      <button>search</button>
+      <h2 id="searchCount"></h2>
+<!--      moved static page contents to HTML -->
+      <h1 id="page-title">Game of Thrones Episodes</h1>
+
+      <p id="source">
+        Episode data originally comes from
+        <a href="https://tvmaze.com/">TVMaze.com</a>
+      </p>
+    </div>
+    <div id="episodes-container"></div>
+  </main>
 
     <!-- Loads a provided function called getAllEpisodes() which returns all episodes -->
     <script src="episodes.js"></script>
