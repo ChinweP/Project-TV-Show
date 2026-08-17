@@ -3,6 +3,8 @@ const episodesContainer = document.getElementById("episodes-container")
 const searchInput = document.getElementById("episode-search");
 const searchCount = document.getElementById("searchCount")
 const selectEpisodes = document.getElementById("episode-selector")
+const statusMessage = document.getElementById("status-message");
+let allEpisodes = [];
 
 function populateOption(episodeList){
     episodeList.forEach((episode) => {
@@ -13,8 +15,8 @@ function populateOption(episodeList){
     })
 }
 
-function getEpisodes(){
-    return getAllEpisodes()
+function getEpisodes() {
+    return allEpisodes;
 }
 
 function render(episodeList) {
@@ -47,22 +49,32 @@ function render(episodeList) {
     });
 }
 
-function setup() {
-    const allEpisodes = getEpisodes()
-    render(allEpisodes);
-    populateOption(allEpisodes)
+async function setup() {
+    try {
+        const response = await fetch("https://api.tvmaze.com/shows/82/episodes");
+        allEpisodes = await response.json();
+        render(allEpisodes);
+        populateOption(allEpisodes);
+        searchCount.textContent = `Displaying: ${allEpisodes.length}/${allEpisodes.length}`;
+        statusMessage.textContent = "";
+    } catch (error) {
+        console.error(error);
+        statusMessage.textContent = "Failed to load episodes.";
+    }
 }
+
 
 let searchTerm = ""
 searchInput.addEventListener("input", () =>{
     searchTerm = searchInput.value.toLowerCase()
     const allEpisodes = getEpisodes()
-    const filteredEpisodes =  allEpisodes.filter((episode) => episode.name.toLowerCase().includes(searchTerm) || episode.summary.toLowerCase().includes(searchTerm))
-    if(searchTerm ){
-        searchCount.textContent = `Displaying: ${filteredEpisodes.length}/${allEpisodes.length}`
-    }else{
-        searchCount.textContent = ""
-    }
+    const filteredEpisodes =  allEpisodes.filter((episode) => 
+        episode.name.toLowerCase().includes(searchTerm) || 
+    episode.summary.toLowerCase().includes(searchTerm)
+);
+searchCount.textContent =
+    `Displaying: ${filteredEpisodes.length}/${allEpisodes.length}`;
+    
     render(filteredEpisodes);
 })
 
@@ -78,4 +90,4 @@ selectedEpisode = selectEpisodes.value
     }
 })
 
-window.onload = setup;
+setup();
