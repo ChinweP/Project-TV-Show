@@ -155,7 +155,10 @@ showSelector.addEventListener("change", async () => {
         await getShowEpisodes(selectedShow)
         episodesCache.set(selectedShow, allEpisodes);
     }
-    episodeSelector.textContent = ""
+    searchInput.value = "";
+    searchCount.textContent = "";
+
+    episodeSelector.innerHTML = '<option value="" disabled selected>Select an episode</option>'
     populateDropdown(
         allEpisodes,
         episodeSelector,
