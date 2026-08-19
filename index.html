@@ -1,48 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta
-    name="description"
-    content="Browse and explore TV shows and episodes."
-  />
+            name="description"
+            content="Browse and explore TV shows and episodes."
+    />
     <title>TV Show Project | Chinwe Chukwuma (ChinweP)</title>
-    <link href="style.css" rel="stylesheet" />
-    <link rel="icon" href="/favicon.ico" type="image/x-icon" />
-  </head>
+    <link href="style.css" rel="stylesheet"/>
+    <link rel="icon" href="/favicon.ico" type="image/x-icon"/>
+</head>
 
-  <body>
-  <main id="root">
+<body>
+<main id="root">
     <div>
-      <label for="episode-selector">Select an episode:</label>
-      <select id="episode-selector" name="episode">
-        <option value="" disabled selected>Select an episode</option>
-      </select>
+        <label for="show-selector">Select a show:</label>
+        <select id="show-selector" name="show">
+            <option value="" disabled selected>Select a show</option>
+        </select>
+        <label for="episode-selector">Select an episode:</label>
+        <select id="episode-selector" name="episode">
+            <option value="" disabled selected>Select an episode</option>
+        </select>
     </div>
     <div id="search-container">
-      <label for="episode-search">Search an episode:</label>
-      <input
-              type="search"
-              id="episode-search"
-              name="episode"
-              placeholder="enter episode"
-      />
-      <button>search</button>
-      <h2 id="searchCount"></h2>
-<!--      moved static page contents to HTML -->
-      <h1 id="page-title">Game of Thrones Episodes</h1>
+        <label for="episode-search">Search an episode:</label>
+        <input
+                type="search"
+                id="episode-search"
+                name="episode"
+                placeholder="enter episode"
+        />
+        <button>search</button>
+        <h2 id="searchCount"></h2>
+        <h2 id="totalEpisode"></h2>
+        <!--      moved static page contents to HTML -->
+        <h1 id="page-title"></h1>
 
-      <p id="source">
-        Episode data originally comes from
-        <a href="https://tvmaze.com/">TVMaze.com</a>
-      </p>
+        <p id="source">
+            Episode data originally comes from
+            <a href="https://tvmaze.com/">TVMaze.com</a>
+        </p>
     </div>
-    <p id="status-message">Loading episodes...</p>
+    <p id="status-message"></p>
     <div id="episodes-container"></div>
-  </main>
+</main>
 
-    <!-- Loads YOUR javascript code -->
-    <script src="script.js"></script>
-  </body>
+<!-- Loads YOUR javascript code -->
+<script src="script.js"></script>
+</body>
 </html>
