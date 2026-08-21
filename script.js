@@ -5,7 +5,9 @@
 const showsView = document.getElementById("shows-view");
 const showsContainer = document.getElementById("shows-container");
 const showSearch = document.getElementById("show-search");
+const showSelector = document.getElementById("show-selector");
 const showStatus = document.getElementById("show-status");
+
 
 const episodesView = document.getElementById("episodes-view");
 const backToShows = document.getElementById("back-to-shows");
@@ -275,6 +277,23 @@ showSearch.addEventListener("input", function () {
     renderShows(filteredShows);
 });
 
+// --------------------------
+// SHOW SELECTOR
+// --------------------------
+
+showSelector.addEventListener("change", function () {
+
+    const selectedShowId = Number(showSelector.value);
+
+    const selectedShow = allShows.find(function (show) {
+        return show.id === selectedShowId;
+    });
+
+    if (selectedShow) {
+        showEpisodes(selectedShow);
+    }
+});
+
 
 // --------------------------
 // EPISODE SEARCH
@@ -372,6 +391,16 @@ async function setup() {
             .toLowerCase()
             .localeCompare(showB.name.toLowerCase());
     });
+
+    allShows.forEach(function (show) {
+    const option = document.createElement("option");
+
+    option.value = show.id;
+    option.textContent = show.name;
+
+    showSelector.appendChild(option);
+});
+
 
     renderShows(allShows);
 }
